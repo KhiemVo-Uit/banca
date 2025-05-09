@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Danh sách cá cảnh</title>
+  <meta charset="UTF-8"/>
+  <link href="/css/styles.css" rel="stylesheet" />
+</head>
+<body>
+<div class="container">
+  <h1 class="my-4">Danh sách sản phẩm cá</h1>
+  <table class="table table-bordered">
+    <thead>
+    <tr>
+      <th>Hình ảnh</th>
+      <th>Mã SP</th>
+      <th>Tên cá</th>
+      <th>Loại</th>
+      <th>Đơn vị tính</th>
+      <th>Nước SX</th>
+      <th>Màu sắc</th>
+      <th>Kích thước</th>
+      <th>Giá</th>
+      <th>Mô tả</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="ca : ${danhSachCa}">
+      <td>
+        <img src="/css/images/neon-blue.jpg" width="100" height="70">
+
+      </td>
+      <td th:text="${ca.masp}"></td>
+      <td th:text="${ca.tensp}"></td>
+      <td th:text="${ca.loai}"></td>
+      <td th:text="${ca.dvt}"></td>
+      <td th:text="${ca.nuocSX}"></td>
+      <td th:text="${ca.mauSac}"></td>
+      <td th:text="${ca.kichThuoc} + ' cm'"></td>
+      <td th:text="${ca.gia} + ' đ'"></td>
+      <td th:text="${ca.moTa}"></td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+</body>
+</html>

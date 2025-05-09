@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Danh sách Hóa Đơn</title>
+  <meta charset="UTF-8"/>
+  <link href="/css/styles.css" rel="stylesheet" />
+</head>
+<body>
+<div class="container">
+  <h1 class="my-4">Danh sách Hóa Đơn</h1>
+
+  <!-- Form tìm kiếm theo mã khách hàng -->
+  <form th:action="@{/hoadon/khachhang}" method="get">
+    <label for="searchMaKH">Nhập Mã Khách Hàng:</label>
+    <input type="text" id="searchMaKH" name="searchMaKH" th:value="${searchMaKH}">
+    <button type="submit">Tìm hóa đơn</button>
+  </form>
+  <br/>
+
+  <!-- Nếu có hóa đơn -->
+  <div th:if="${dshoadon != null and !dshoadon.isEmpty()}">
+    <table class="table table-bordered">
+      <thead>
+      <tr>
+        <th>Số Hóa Đơn</th>
+
+        <th>Ngày Mua</th>
+        <th>Trị Giá</th>
+        <th>Mã Nhân Viên</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:each="hd : ${dshoadon}">
+        <td th:text="${hd.soHd}"></td>
+
+        <td th:text="${hd.ngayMua != null ? hd.ngayMua.format(T(java.time.format.DateTimeFormatter).ofPattern('dd/MM/yyyy')) : ''}"></td>
+        <td th:text="${hd.triGia}"></td>
+        <td th:text="${hd.nhanVien.maNv}"></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Nếu không có hóa đơn -->
+  <div th:if="${dshoadon == null or dshoadon.isEmpty()}">
+    <p th:if="${maKH != null}">Không tìm thấy hóa đơn cho khách hàng có mã: <span th:text="${maKH}"></span></p>
+    <p th:if="${maKH == null}">Chưa có dữ liệu hóa đơn.</p>
+  </div>
+</div>
+</body>
+</html>

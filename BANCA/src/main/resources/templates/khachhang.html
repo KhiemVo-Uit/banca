@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Danh sách khách hàng</title>
+  <meta charset="UTF-8"/>
+  <link href="/css/styles.css" rel="stylesheet"/>
+</head>
+<body>
+<div class="container">
+  <h1 class="my-4">Danh sách khách hàng</h1>
+  <table class="table table-bordered">
+    <thead>
+    <tr>
+      <th>Mã KH</th>
+      <th>Tên</th>
+      <th>Địa chỉ</th>
+      <th>Số ĐT</th>
+      <th>Ngày sinh</th>
+      <th>Doanh số</th>
+      <th>Ngày đăng ký</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="kh : ${danhsachKH}">
+      <td th:text="${kh.makh}">Mã KH</td>
+      <td th:text="${kh.ten}">Tên</td>
+      <td th:text="${kh.diaChi}">Địa chỉ</td>
+      <td th:text="${kh.soDienThoai}">SĐT</td>
+      <td th:text="${kh.ngaySinh}">Ngày sinh</td>
+      <td th:text="${#numbers.formatDecimal(kh.doanhSo, 0, 'COMMA', 2, 'POINT') + ' đ'}"></td>
+      <td th:text="${kh.ngayDangKy}">Ngày đăng ký</td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+</body>
+</html>
